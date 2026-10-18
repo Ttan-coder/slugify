@@ -166,6 +166,11 @@ test('lowercase option', t => {
 	t.is(slugify('Foo🦄', {lowercase: false}), 'Foo-unicorn');
 });
 
+test('preserveCase', t => {
+	t.is(slugify('Déjà Vu!', {preserveCase: true}), 'Deja-Vu');
+	t.is(slugify('Déjà Vu!'), 'deja-vu');
+});
+
 test('decamelize option', t => {
 	t.is(slugify('fooBar'), 'foo-bar');
 	t.is(slugify('fooBar', {decamelize: false}), 'foobar');
