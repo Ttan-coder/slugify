@@ -68,8 +68,12 @@ export default function slugify(string, options) {
 		preserveTrailingDash: false,
 		preserveCharacters: [],
 		transliterate: true,
+		preserveCase: false,
 		...options,
 	};
+
+	// `preserveCase` wins over the default lowercasing, so original casing survives all later steps.
+	options.lowercase &&= !options.preserveCase;
 
 	const shouldPrependUnderscore = options.preserveLeadingUnderscore && string.startsWith('_');
 	const shouldAppendDash = options.preserveTrailingDash && string.endsWith('-');
